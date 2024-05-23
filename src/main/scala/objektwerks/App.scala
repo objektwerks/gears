@@ -28,4 +28,4 @@ private def select(): Unit =
       list.handle: l =>
         s"reversed $l"
     )
-    println(winner)
+    println(s"* $winner")
