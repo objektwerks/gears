@@ -36,7 +36,7 @@ private def select(): Unit =
 
 private def timeout(): Unit =
   Async.blocking:
-    withTimeout(60.seconds):
+    withTimeout(10.seconds):
       println( getJoke() )
 
 private def retry(): Unit =
@@ -44,5 +44,5 @@ private def retry(): Unit =
     Retry
       .untilSuccess
       .withMaximumFailures(2)
-      .withDelay(Delay.constant(3.seconds)):
+      .withDelay( Delay.constant(3.seconds) ):
         println( getJoke() )
