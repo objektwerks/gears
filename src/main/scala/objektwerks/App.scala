@@ -11,6 +11,7 @@ def runApp: Unit =
   futures()
   select()
   timeout()
+  retry()
 
 private def futures(): Unit =
   Async.blocking:
