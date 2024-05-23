@@ -6,7 +6,7 @@ import gears.async.default.given
 @main
 def runApp: Unit =
   futures()
-
+  select()
 
 private def futures(): Unit =
   Async.blocking:
@@ -18,4 +18,15 @@ private def futures(): Unit =
     .awaitAll
     .foreach(println)
 
-private def select(): Unit = ???
+private def select(): Unit =
+  Async.blocking:
+    val number = Future( factorial(9) )
+    val list = Future( reverse( List(3, 2, 1) ) )
+
+    val winner = Async.select(
+      number.handle: n =>
+        s"factorial $n",
+      list.handle: l =>
+        s"reversed $l"
+    )
+    println(winner)
