@@ -1,6 +1,7 @@
 package objektwerks
 
-import gears.async.{Async, Future, withTimeout}
+import gears.async.{Async, Future, Retry, withTimeout}
+import gears.async.Retry.Delay
 import gears.async.default.given
 
 import scala.concurrent.duration.DurationInt
@@ -36,3 +37,11 @@ private def timeout(): Unit =
   Async.blocking:
     withTimeout(60.seconds):
       println( getJoke() )
+
+private def retry(): Unit =
+  Async.blocking:
+    Retry
+      .untilSuccess
+      .withMaximumFailures(2)
+      .withDelay(Delay.constant(3.seconds)):
+        println( getJoke() )
