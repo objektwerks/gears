@@ -17,13 +17,6 @@ Test
 Run
 ---
 1. sbt run
-```
-Multiple main classes detected. Select one to run:
- [1] objektwerks.runAsyncApp
- [2] objektwerks.runFutureApp
-
-Enter number:
-```
 
 Resources
 ---------
