@@ -1,6 +1,6 @@
 name := "gears"
 organization := "objektwerks"
-version := "0.2-SNAPSHOT"
+version := "0.2"
 scalaVersion := "3.5.0-RC1"
 libraryDependencies ++= {
   Seq(
