@@ -4,7 +4,7 @@ Gears
 
 Warning
 -------
->Not ready for primetime yet --- **sbt run** fails to link AsyncApp.
+>**sbt run** fails to link AsyncApp on **java.net.URL**.
 
 Build
 -----
