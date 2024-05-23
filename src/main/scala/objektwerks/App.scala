@@ -33,7 +33,8 @@ private def select(): Unit =
     val list = Future( reverse( List(3, 2, 1) ) )
     val number = Future( factorial(11) )
     val winner = Async.select(
-      list.handle: l => // always wins! so is it a race? :)
+      list.handle: l =>
+         // always wins! so is it a race? :)
         s"reversed List(3, 2, 1) = ${l.get}",
       number.handle: n =>
         s"factorial of 11 = ${n.get}"
