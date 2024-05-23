@@ -28,9 +28,9 @@ private def select(): Unit =
     val list = Future( reverse( List(3, 2, 1) ) )
     val winner = Async.select(
       number.handle: n =>
-        s"factorial of number = ${n.get}",
+        s"factorial of 11 = ${n.get}",
       list.handle: l =>
-        s"reversed list = ${l.get}"
+        s"reversed List(3, 2, 1) = ${l.get}"
     )
     println(s"* $winner")
 
