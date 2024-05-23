@@ -8,6 +8,5 @@ def runFutureApp: Unit =
   Async.blocking:
     val joke1 = Future( getJoke() )
     val joke2 = Future( getJoke() )
-    val (j1, j2) = joke1.zip(joke2).await
-    println(j1)
-    println(j2)
+    val jokes = Seq(joke1, joke2).awaitAll
+    jokes.foreach(println)
