@@ -12,7 +12,6 @@ private def futures(): Unit =
   Async.blocking:
     Seq(
       Future( getJoke() ),
-      Future( getJoke() ),
       Future( getJoke() )
     )
     .awaitAll
@@ -20,12 +19,12 @@ private def futures(): Unit =
 
 private def select(): Unit =
   Async.blocking:
-    val number = Future( factorial(9) )
+    val number = Future( factorial(11) )
     val list = Future( reverse( List(3, 2, 1) ) )
     val winner = Async.select(
       number.handle: n =>
-        s"factorial $n",
+        s"factorial ${n.get}",
       list.handle: l =>
-        s"reversed $l"
+        s"reversed ${l.get}"
     )
     println(s"* $winner")
