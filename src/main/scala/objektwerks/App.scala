@@ -1,12 +1,15 @@
 package objektwerks
 
-import gears.async.{Async, Future}
+import gears.async.{Async, Future, withTimeout}
 import gears.async.default.given
+
+import scala.concurrent.duration.DurationInt
 
 @main
 def runApp: Unit =
   futures()
   select()
+  timeout()
 
 private def futures(): Unit =
   Async.blocking:
@@ -28,3 +31,8 @@ private def select(): Unit =
         s"reversed ${l.get}"
     )
     println(s"* $winner")
+
+private def timeout(): Unit =
+  Async.blocking:
+    withTimeout(60.seconds):
+      println( getJoke() )
