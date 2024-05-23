@@ -8,6 +8,7 @@ def runApp: Unit =
   Async.blocking:
     Seq(
       Future( getJoke() ),
+      Future( getJoke() ),
       Future( getJoke() )
     )
     .awaitAll
