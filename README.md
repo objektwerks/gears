@@ -2,6 +2,10 @@ Gears
 -----
 >Gears feature tests using uJson and Scala 3.
 
+Warning
+-------
+>Not ready for primetime yet --- **sbt run** fails to link AsyncApp.
+
 Build
 -----
 1. sbt clean compile
