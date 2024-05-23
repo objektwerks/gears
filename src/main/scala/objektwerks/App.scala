@@ -4,7 +4,7 @@ import gears.async.{Async, Future}
 import gears.async.default.given
 
 @main
-def runFutureApp: Unit =
+def runApp: Unit =
   Async.blocking:
     Seq(
       Future( getJoke() ),
