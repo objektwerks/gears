@@ -13,6 +13,11 @@ def runApp: Unit =
   timeout()
   retry()
 
+private def future(): Unit =
+  Async.blocking:
+    val joke = Future( getJoke() ).await
+    println(joke)
+
 private def futures(): Unit =
   Async.blocking:
     Seq(
