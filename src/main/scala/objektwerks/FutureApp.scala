@@ -11,4 +11,4 @@ def runFutureApp: Unit =
       Future( getJoke() )
     )
     .awaitAll
-    .foreach(println
+    .foreach(println)
