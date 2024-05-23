@@ -8,6 +8,7 @@ import scala.concurrent.duration.DurationInt
 
 @main
 def runApp: Unit =
+  future()
   futures()
   select()
   timeout()
