@@ -6,7 +6,9 @@ import gears.async.default.given
 @main
 def runFutureApp: Unit =
   Async.blocking:
-    val joke1 = Future( getJoke() )
-    val joke2 = Future( getJoke() )
-    val jokes = Seq(joke1, joke2).awaitAll
-    jokes.foreach(println)
+    Seq(
+      Future( getJoke() ),
+      Future( getJoke() )
+    )
+    .awaitAll
+    .foreach(println)
