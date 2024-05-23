@@ -13,13 +13,6 @@ Test
 Run
 ---
 1. sbt run
-```
-Multiple main classes detected. Select one to run:
- [1] objektwerks.runParApp
- [2] objektwerks.runSupervisedApp
-
-Enter number:
-```
 
 Resources
 ---------
