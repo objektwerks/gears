@@ -22,7 +22,6 @@ private def select(): Unit =
   Async.blocking:
     val number = Future( factorial(9) )
     val list = Future( reverse( List(3, 2, 1) ) )
-
     val winner = Async.select(
       number.handle: n =>
         s"factorial $n",
