@@ -5,6 +5,10 @@ import gears.async.default.given
 
 @main
 def runApp: Unit =
+  futures()
+
+
+private def futures(): Unit =
   Async.blocking:
     Seq(
       Future( getJoke() ),
