@@ -17,3 +17,5 @@ private def futures(): Unit =
     )
     .awaitAll
     .foreach(println)
+
+private def select(): Unit = ???
