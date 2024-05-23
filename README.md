@@ -2,9 +2,9 @@ Gears
 -----
 >Gears feature tests using uJson and Scala 3.
 
-Warning
--------
->**sbt run** fails to link AsyncApp on **java.net.URL**.
+Note
+----
+>If using Scala Native, **sbt run** fails to link **AsyncApp** on **java.net.URL**.
 
 Build
 -----
