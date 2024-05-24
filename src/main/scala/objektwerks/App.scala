@@ -62,14 +62,14 @@ private def channel(): Unit =
 
     val send = Future:
       AsyncOperations.sleep(3.seconds)
-      1
+      factorial(1)
 
     val read = Future:
       channel.read().right.get
 
     Async.select(
       send.handle: f =>
-        println(s"factorial $f"),
+        println(s"factorial of $f"),
 
       channel.sendSource( factorial(11) ).handle:
         case Left(Closed) => println("* channel closed!")
