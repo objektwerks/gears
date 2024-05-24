@@ -59,5 +59,7 @@ private def channel(): Unit =
     val factorials = Future:
       factorial(11)
     val channel = SyncChannel[Int]()
+    val read = Future:
+      channel.read().right.get
 
       
