@@ -1,6 +1,7 @@
 package objektwerks
 
 import gears.async.{Async, Future, Retry, SyncChannel, withTimeout}
+import gears.async.Channel.Closed
 import gears.async.Retry.Delay
 import gears.async.default.given
 
@@ -56,10 +57,15 @@ private def retry(): Unit =
 
 private def channel(): Unit =
   Async.blocking:
-    val factorials = Future:
-      factorial(11)
+    val send = Future:
+      factorial(3)
     val channel = SyncChannel[Int]()
     val read = Future:
       channel.read().right.get
-
-      
+    Async.select(
+      send.handle: i =>
+        println(s"factorial $i"),
+      channel.sendSource(6).handle:
+        case Left(Closed) => println("* channel closed!")
+        case Right(()) => println(s"* channel read: ${read.await}")
+    )
