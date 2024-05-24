@@ -55,7 +55,7 @@ private def retry(): Unit =
       .untilSuccess
       .withMaximumFailures(2)
       .withDelay( Delay.constant(3.seconds) ):
-        println( getJoke() )
+        println(s"* retry: ${getJoke()}" )
 
 private def channel(): Unit =
   Async.blocking:
