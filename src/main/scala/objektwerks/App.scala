@@ -1,6 +1,6 @@
 package objektwerks
 
-import gears.async.{Async, AsyncOperations, Future, Retry, SyncChannel, withTimeout}
+import gears.async.{Async, Future, Retry, SyncChannel, withTimeout}
 import gears.async.Channel.Closed
 import gears.async.Retry.Delay
 import gears.async.default.given
@@ -32,14 +32,15 @@ private def futures(): Unit =
 
 private def select(): Unit =
   Async.blocking:
-    val list = Future( reverse( List(3, 2, 1) ) )
     val number = Future( factorial(11) )
+    val list = Future( reverse( List(3, 2, 1) ) )
     val winner = Async.select(
-      list.handle: l =>
-         // always wins! so is it a race? :)
-        s"reversed List(3, 2, 1) = ${l.get}",
       number.handle: n =>
-        s"factorial of 11 = ${n.get}"
+        // always wins! so is it a race? :)
+        s"factorial of 11 = ${n.get}",
+      list.handle: l =>
+        s"reversed List(3, 2, 1) = ${l.get}"
+
     )
     println(s"* $winner")
 
@@ -59,19 +60,10 @@ private def retry(): Unit =
 private def channel(): Unit =
   Async.blocking:
     val channel = SyncChannel[Int]()
-
-    val send = Future:
-      AsyncOperations.sleep(3.seconds)
-      factorial(1)
-
-    val read = Future:
+    val reader = Future:
       channel.read().right.get
-
     Async.select(
-      send.handle: f =>
-        println(s"factorial of $f"),
-
       channel.sendSource( factorial(11) ).handle:
         case Left(Closed) => println("* channel closed!")
-        case Right(()) => println(s"* channel read factorial of 11 = ${read.await}")
+        case Right(()) => println(s"* channel reader > factorial of 11 = ${reader.await}")
     )
