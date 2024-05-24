@@ -1,6 +1,6 @@
 package objektwerks
 
-import gears.async.{Async, Future, Retry, SyncChannel, withTimeout}
+import gears.async.{Async, AsyncOperations, Future, Retry, SyncChannel, withTimeout}
 import gears.async.Channel.Closed
 import gears.async.Retry.Delay
 import gears.async.default.given
@@ -61,7 +61,8 @@ private def channel(): Unit =
     val channel = SyncChannel[Int]()
 
     val send = Future:
-      factorial(3)
+      AsyncOperations.sleep(3.seconds)
+      1
 
     val read = Future:
       channel.read().right.get
@@ -70,7 +71,7 @@ private def channel(): Unit =
       send.handle: f =>
         println(s"factorial $f"),
 
-      channel.sendSource(6).handle:
+      channel.sendSource( factorial(11) ).handle:
         case Left(Closed) => println("* channel closed!")
-        case Right(()) => println(s"* channel read: ${read.await}")
+        case Right(()) => println(s"* channel read factorial of 11 = ${read.await}")
     )
