@@ -14,6 +14,7 @@ def runApp: Unit =
   select()
   timeout()
   retry()
+  channel()
 
 private def future(): Unit =
   Async.blocking:
