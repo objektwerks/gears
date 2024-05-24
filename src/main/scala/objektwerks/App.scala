@@ -67,9 +67,9 @@ private def channel(): Unit =
       channel.read().right.get
 
     Async.select(
-      send.handle: i =>
-        println(s"factorial $i"),
-        
+      send.handle: f =>
+        println(s"factorial $f"),
+
       channel.sendSource(6).handle:
         case Left(Closed) => println("* channel closed!")
         case Right(()) => println(s"* channel read: ${read.await}")
