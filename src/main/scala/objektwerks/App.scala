@@ -19,7 +19,7 @@ def runApp: Unit =
 private def future(): Unit =
   Async.blocking:
     val joke = Future( getJoke() ).await
-    println(s"future: $joke")
+    println(s"* future: $joke")
 
 private def futures(): Unit =
   Async.blocking:
@@ -28,7 +28,7 @@ private def futures(): Unit =
       Future( getJoke() )
     )
     .awaitAll
-    .foreach(joke => println(s"futures: $joke"))
+    .foreach(joke => println(s"* futures: $joke"))
 
 private def select(): Unit =
   Async.blocking:
