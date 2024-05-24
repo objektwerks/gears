@@ -37,9 +37,9 @@ private def select(): Unit =
     val winner = Async.select(
       number.handle: n =>
         // always wins! so is it a race? :)
-        s"factorial of 11 = ${n.get}",
+        s"async select > factorial of 11 = ${n.get}",
       list.handle: l =>
-        s"reversed List(3, 2, 1) = ${l.get}"
+        s"async select > reversed List(3, 2, 1) = ${l.get}"
 
     )
     println(s"* $winner")
