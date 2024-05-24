@@ -28,7 +28,7 @@ private def futures(): Unit =
       Future( getJoke() )
     )
     .awaitAll
-    .foreach(println)
+    .foreach(joke => println(s"futures: $joke"))
 
 private def select(): Unit =
   Async.blocking:
