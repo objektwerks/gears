@@ -47,7 +47,7 @@ private def select(): Unit =
 private def timeout(): Unit =
   Async.blocking:
     withTimeout(10.seconds):
-      println( getJoke() )
+      println(s"* timeout: ${getJoke()}" )
 
 private def retry(): Unit =
   Async.blocking:
