@@ -54,4 +54,8 @@ private def retry(): Unit =
       .withDelay( Delay.constant(3.seconds) ):
         println( getJoke() )
 
-private def channel(): Unit = ???
+private def channel(): Unit =
+  Async.blocking:
+    val factorials = Future:
+      factorial(11)
+      
