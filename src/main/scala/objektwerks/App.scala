@@ -1,6 +1,6 @@
 package objektwerks
 
-import gears.async.{Async, Future, Retry, withTimeout}
+import gears.async.{Async, Future, Retry, SyncChannel, withTimeout}
 import gears.async.Retry.Delay
 import gears.async.default.given
 
@@ -58,4 +58,6 @@ private def channel(): Unit =
   Async.blocking:
     val factorials = Future:
       factorial(11)
+    val channel = SyncChannel[Int]()
+
       
