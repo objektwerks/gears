@@ -5,7 +5,7 @@ scalaVersion := "3.7.1-RC1"
 libraryDependencies ++= {
   Seq(
     "ch.epfl.lamp" %% "gears" % "0.2.0",
-    "com.lihaoyi" %% "ujson" % "4.1.0"
+    "com.lihaoyi" %% "ujson" % "4.2.1"
   )
 }
 scalacOptions ++= Seq(
