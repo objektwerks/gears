@@ -1,7 +1,7 @@
 name := "gears"
 organization := "objektwerks"
 version := "0.4-SNAPSHOT"
-scalaVersion := "3.8.0-RC4"
+scalaVersion := "3.8.0-RC5"
 libraryDependencies ++= {
   Seq(
     "ch.epfl.lamp" %% "gears" % "0.2.0",
